@@ -10,7 +10,7 @@ TwinSync also offers a variety of templates and customization options such as su
 
 # **API Documentation**
 
-This API document is for the photo-talking interface. Upload text, photo cloud address, speaker and key to get the API interface for synthesizing videos.
+This API document is for the photo talking interface. Upload text, photo cloud address, speaker and key to get the API interface for synthesizing videos.
 
 ## **POST Service Request**
 
@@ -105,7 +105,7 @@ Here's an example python code snippet showing how to call the TwinSync Photo Tal
 
     # Send a POST request to the endpoint with the parameters
     response = requests.post(url, data=params)
-    print('收到响应结果：', response.json())
+    print('Received response results: ', response.json())
 
     task_id = None
     # Check if the response was successful (status code 100)
@@ -126,7 +126,7 @@ Here's an example python code snippet showing how to call the TwinSync Photo Tal
 
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
-        print('收到处理结果：', status_response.json())
+        print('Received processing results: ', status_response.json())
 
         # Check if the response was successful (status code 100)
         if status_response.json()['result_code'] == 100:
