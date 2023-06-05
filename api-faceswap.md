@@ -87,6 +87,7 @@ GET
 ## **Example Code**
 Here's an example Python code snippet showing how to call the TwinSync video face-shift API using the requests library:
 
+    import time
     import requests
 
     # Set the endpoint URL
@@ -94,36 +95,45 @@ Here's an example Python code snippet showing how to call the TwinSync video fac
 
     # Set the request parameters
     params = {
-        "image_url": "cloud/photo.jpg",
-        "video_url": "cloud/video.mp4",
-        "key": "your_secret_key"
+        "image_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683730315image.jpeg",
+        "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
+        "key": "your_access_key"
     }
 
     # Send a POST request to the endpoint with the parameters
     response = requests.post(url, data=params)
+    print('Received response results: ', response.json())
 
+    task_id = None
     # Check if the response was successful (status code 100)
-    if response.status_code == 100:
+    if response.json()['result_code'] == 100:
         # Get the task ID from the response
         task_id = response.json()["task_id"]
         print("Task ID:", task_id)
     else:
         print("Error:", response.json()["msg"])
 
-    # Wait for a few seconds or minutes before checking the status
+    if task_id:
+        # Wait for a few seconds or minutes before checking the status
+        result_url = None
+        while not result_url:
+            # Set the endpoint URL for getting the status
+            status_url = f"http://api.twinsync.xyz:51916/faceswap_video?taskID={task_id}"
 
-    # Set the endpoint URL for getting the status
-    status_url = f"http://api.twinsync.xyz:51916/faceswap_video?taskID={task_id}"
+            # Send a GET request to the status endpoint
+            status_response = requests.get(status_url)
+            print('Received processing results: ', status_response.json())
 
-    # Send a GET request to the status endpoint
-    status_response = requests.get(status_url)
+            # Check if the response was successful (status code 100)
+            if status_response.json()['result_code'] == 100:
+                # Get the result URL and message from the response
+                result_url = status_response.json()["result_url"]
+                msg = status_response.json()["msg"]
+                print(msg)
+                print("Result URL:", result_url)
+            else:
+                print("Status:", status_response.json()["msg"])
 
-    # Check if the response was successful (status code 100)
-    if status_response.status_code == 100:
-        # Get the result URL and message from the response
-        result_url = status_response.json()["result_url"]
-        msg = status_response.json()["msg"]
-        print(msg)
-        print("Result URL:", result_url)
-    else:
-        print("Error:", status_response.json()["msg"])
+            time.sleep(10)
+
+
