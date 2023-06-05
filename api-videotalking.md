@@ -87,46 +87,55 @@ GET
 ## **Example Code**
 
 Here's an example python code snippet showing how to call the TwinSync Lip Replacement API using the requests library:
-
-
+    
+    import time
     import requests
 
     # Set the endpoint URL
-
-    url = "http://api.twinsync.xyz:27323/videotalking"
+    url = "http://api.sam-sara.cn:27323/videotalking"
 
     # Set the request parameters
     params = {
-        "audio_url": "cloud/audio.mp3",
-        "video_url": "cloud/video.mp4",
+        "audio_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683375896audio.wav",
+        "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
         "key": "your_access_key"
     }
 
     # Send a POST request to the endpoint with the parameters
     response = requests.post(url, data=params)
+    print('Received response results: ', response.json())
 
+    task_id = None
     # Check if the response was successful (status code 100)
-    if response.status_code == 100:
+    if response.json()['result_code'] == 100:
         # Get the task ID from the response
         task_id = response.json()["task_id"]
         print("Task ID:", task_id)
     else:
         print("Error:", response.json()["msg"])
 
-    # Wait for a few seconds or minutes before checking the status
+    if task_id:
+      # Wait for a few seconds or minutes before checking the status
+      result_url = None
+      while not result_url:
 
-    # Set the endpoint URL for getting the status
-    status_url = f"http://api.twinsync.xyz:27323/videotalking?taskID={task_id}"
+        # Set the endpoint URL for getting the status
+        status_url = f"http://api.twinsync.xyz:27323/videotalking?taskID={task_id}"
 
-    # Send a GET request to the status endpoint
-    status_response = requests.get(status_url)
+        # Send a GET request to the status endpoint
+        status_response = requests.get(status_url)
+        print('Received processing results: ', status_response.json())
 
-    # Check if the response was successful (status code 100)
-    if status_response.status_code == 100:
-        # Get the result URL and message from the response
-        result_url = status_response.json()["result_url"]
-        msg = status_response.json()["msg"]
-        print(msg)
-        print("Result URL:", result_url)
-    else:
-        print("Error:", status_response.json()["msg"])
+        # Check if the response was successful (status code 100)
+        if status_response.json()['result_code'] == 100:
+            # Get the result URL and message from the response
+            result_url = status_response.json()["result_url"]
+            msg = status_response.json()["msg"]
+            print(msg)
+            print("Result URL:", result_url)
+        else:
+            print("Status:", status_response.json()["msg"])
+
+        time.sleep(10)
+
+
