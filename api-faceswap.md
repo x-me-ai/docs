@@ -131,9 +131,9 @@ Here's an example Python code snippet showing how to call the TwinSync video fac
                 msg = status_response.json()["msg"]
                 print(msg)
                 print("Result URL:", result_url)
+                break
             else:
                 print("Status:", status_response.json()["msg"])
-
-            time.sleep(10)
+                time.sleep(10)
 
 
