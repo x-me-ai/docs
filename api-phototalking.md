@@ -135,10 +135,10 @@ Here's an example python code snippet showing how to call the TwinSync Photo Tal
             msg = status_response.json()["msg"]
             print(msg)
             print("Result URL:", result_url)
+            break
         else:
             print("Status:", status_response.json()["msg"])
-
-        time.sleep(5)
+            time.sleep(5)
 
 
 
