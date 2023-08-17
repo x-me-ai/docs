@@ -15,8 +15,7 @@ This API is the documentation for Lip Replacement API. It uploads audio cloud ad
 ## **POST Service Request**
 
 **URL Address**
-
-http://api.twinsync.xyz:27323/videotalking
+https://api.twinsync.ai:8075/videotalking
 
 **Request Method**
 
@@ -55,7 +54,7 @@ POST
 
 **URL Address**
 
-http://api.twinsync.xyz:27323/videotalking?taskID=***
+https://api.twinsync.ai:8075/videotalking?taskID=***
 
 **Request Method**
 
@@ -65,7 +64,7 @@ GET
 
 {
 
-"result_url": "http://api.twinsync.xyz:27323/example/20230423_11_23_05_10279.mp4",
+"result_url": "https://api.twinsync.ai:8075/example/20230423_11_23_05_10279.mp4",
 
 "result_code": 100,
 
@@ -92,7 +91,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     import requests
 
     # Set the endpoint URL
-    url = "http://api.sam-sara.cn:27323/videotalking"
+    url = "https://api.twinsync.ai:8075/videotalking"
 
     # Set the request parameters
     params = {
@@ -120,7 +119,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
       while not result_url:
 
         # Set the endpoint URL for getting the status
-        status_url = f"http://api.twinsync.xyz:27323/videotalking?taskID={task_id}"
+        status_url = f"https://api.twinsync.ai:8075/videotalking?taskID={task_id}"
 
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
