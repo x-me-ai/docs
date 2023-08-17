@@ -69,7 +69,7 @@ GET
 
 "result_code": 100,
 
-"msg": "taskID:20230423_11_23_05_10279 has been completed, and the output video url is: http://api.twinsync.xyz:27323/example/20230423_11_23_05_10279.mp4"
+"msg": "taskID:20230423_11_23_05_10279 has been completed, and the output video url is: https://api.twinsync.ai:8075/example/20230423_11_23_05_10279.mp4"
 
 }
 
