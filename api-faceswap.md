@@ -77,9 +77,9 @@ GET
 
 | **Status code** | **Description** |
 | --- | --- |
+| 100 | The task is in a successful state |
 | 101 | The task is in a waiting state |
 | 102 | The task is in a running state |
-| 103 | The task is in a successful state |
 | 104 | The task is in a failed state |
 | 200 | The taskID field is missing or the field is not in the service queue |
 
