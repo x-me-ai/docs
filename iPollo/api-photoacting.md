@@ -16,7 +16,7 @@ This API is the documentation for Photo Acting API. It uploads image cloud addre
 
 **URL Address**
 
-http://api.twinsync.xyz:30690/photoacting
+https://twinsyncapi.ipolloverse.cn:8077/photoacting
 
 **Request Method**
 
@@ -55,7 +55,7 @@ POST
 
 **URL Address**
 
-http://api.twinsync.xyz:30690/photoacting?taskID=***
+https://twinsyncapi.ipolloverse.cn:8077/photoacting?taskID=***
 
 **Request Method**
 
@@ -65,11 +65,25 @@ GET
 
 {
 
-"result_url": "http://api.twinsync.xyz:30690/example/20230423_11_23_05_10279.mp4",
+"result_url": "https://twinsyncapi.ipolloverse.cn:8077/example/20230423_11_23_05_10279.mp4",
 
 "result_code": 100,
 
-"msg": "taskID:20230423_11_23_05_10279 has been completed, and the output video url is: http://api.twinsync.xyz:30690/example/20230423_11_23_05_10279.mp4"
+"msg": "taskID:20230423_11_23_05_10279 has been completed, and the output video url is: https://twinsyncapi.ipolloverse.cn:8077/example/20230423_11_23_05_10279.mp4",
+
+"api_time_consume": 10,
+
+"api_time_left": 590,
+
+"video_w": 1920,
+
+"video_h": 1080,
+
+"gpu_type": "NVIDIA GeForce RTX 3090",
+
+"gpu_time_estimate": 120,
+
+"gpu_time_use": 5
 
 }
 
@@ -92,7 +106,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     import requests
 
     # Set the endpoint URL
-    url = "http://api.sam-sara.cn:30690/photoacting"
+    url = "https://twinsyncapi.ipolloverse.cn:8077/photoacting"
 
     # Set the request parameters
     params = {
@@ -120,7 +134,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
       while not result_url:
 
         # Set the endpoint URL for getting the status
-        status_url = f"http://api.twinsync.xyz:30690/photoacting?taskID={task_id}"
+        status_url = f"https://twinsyncapi.ipolloverse.cn:8077/photoacting?taskID={task_id}"
 
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
