@@ -110,7 +110,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
 
     # Set the request parameters
     params = {
-        "audio_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/202308311830.jpg",
+        "image_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683730315image.jpeg",
         "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
         "key": "your_access_key"
     }
