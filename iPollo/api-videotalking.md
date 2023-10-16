@@ -16,7 +16,7 @@ This API is the documentation for Lip Replacement API. It uploads audio cloud ad
 
 **URL Address**
 
-https://twinsyncapi.ipolloverse.cn:8075/videotalking
+http://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking
 
 **Request Method**
 
@@ -55,7 +55,7 @@ POST
 
 **URL Address**
 
-https://twinsyncapi.ipolloverse.cn:8075/videotalking?taskID=***
+http://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking?taskID=***
 
 **Request Method**
 
@@ -65,11 +65,11 @@ GET
 
 {
 
-"result_url": "https://twinsyncapi.ipolloverse.cn:8075/example/20230423_11_23_05_10279.mp4",
+"result_url": "http://pop.ipolloverse.cn:8090/iPollo/twinSync/example/20230423_11_23_05_10279.mp4",
 
 "result_code": 100,
 
-"msg": "taskID:20230423_11_23_05_10279 has been completed, and the output video url is: https://twinsyncapi.ipolloverse.cn:8075/example/20230423_11_23_05_10279.mp4",
+"msg": "taskID:20230423_11_23_05_10279 has been completed, and the output video url is: http://pop.ipolloverse.cn:8090/iPollo/twinSync/example/20230423_11_23_05_10279.mp4",
 
 "api_time_consume": 10,
 
@@ -106,7 +106,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     import requests
 
     # Set the endpoint URL
-    url = "https://twinsyncapi.ipolloverse.cn:8075/videotalking"
+    url = "http://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking"
 
     # Set the request parameters
     params = {
@@ -134,7 +134,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
       while not result_url:
 
         # Set the endpoint URL for getting the status
-        status_url = f"https://twinsyncapi.ipolloverse.cn:8075/videotalking?taskID={task_id}"
+        status_url = f"http://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking?taskID={task_id}"
 
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
