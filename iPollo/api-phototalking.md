@@ -22,7 +22,13 @@ https://pop.ipolloverse.cn:8090/iPollo/twinSync/phototalking
 
 POST
 
-**Request Parameters**
+**Request Header Parameters**
+
+| **Parameter Name** | **Type** | **Required (or Mandatory)** | **value** |
+| --- | --- | --- | --- |
+| Authorization | string | Yes | 0dsljRD1usweeUKO9g3Rff |
+
+**Request Body Parameters**
 
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **Description** |
 | --- | --- | --- | --- |
@@ -105,43 +111,48 @@ Here's an example python code snippet showing how to call the TwinSync Photo Tal
 
     import time
     import requests
-
+    
     # Set the endpoint URL
     url = "https://pop.ipolloverse.cn:8090/iPollo/twinSync/phototalking"
-
+    
     # Set the request parameters
-    params = {
+    header = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "0dsljRD1usweeUKO9g3Rff"
+    }
+    data = {
         "text": "你好，我是会说话的照片数字人",
         "image_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683730315image.jpeg",
         "pronouncer": "zh-CN-XiaohanNeural",
         "key": "your_access_key"
     }
-
+    
     # Send a POST request to the endpoint with the parameters
-    response = requests.post(url, data=params)
+    response = requests.post(url, json=data, headers=header)
     print('收到响应结果：', response.json())
-
+    
     task_id = None
     # Check if the response was successful (status code 100)
-    if response.json()['result_code'] == 100:
+    if response.json()['returnCode'] == 100:
         # Get the task ID from the response
         task_id = response.json()["task_id"]
         print("Task ID:", task_id)
     else:
         print("Error:", response.json()["msg"])
-
+    
     if task_id:
       # Wait for a few seconds or minutes before checking the status
       result_url = None
       while not result_url:
-
+    
         # Set the endpoint URL for getting the status
         status_url = f"https://pop.ipolloverse.cn:8090/iPollo/twinSync/phototalking?taskID={task_id}"
-
+    
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
         print('收到处理结果：', status_response.json())
-
+    
         # Check if the response was successful (status code 100)
         if status_response.json()['result_code'] == 100:
             # Get the result URL and message from the response
@@ -151,7 +162,7 @@ Here's an example python code snippet showing how to call the TwinSync Photo Tal
             print("Result URL:", result_url)
         else:
             print("Status:", status_response.json()["msg"])
-            time.sleep(5)
+            time.sleep(10)
 
 
 
