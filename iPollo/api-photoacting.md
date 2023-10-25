@@ -22,7 +22,13 @@ https://pop.ipolloverse.cn:8090/iPollo/twinSync/photoacting
 
 POST
 
-**Request Parameters**
+**Request Header Parameters**
+
+| **Parameter Name** | **Type** | **Required (or Mandatory)** | **value** |
+| --- | --- | --- | --- |
+| Authorization | string | Yes | 0dsljRD1usweeUKO9g3Rff |
+
+**Request Body Parameters**
 
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **Description** |
 | --- | --- | --- | --- |
@@ -109,6 +115,9 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     url = "https://pop.ipolloverse.cn:8090/iPollo/twinSync/photoacting"
 
     # Set the request parameters
+    header = {
+        "Authorization": "0dsljRD1usweeUKO9g3Rff"
+    }
     params = {
         "image_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683730315image.jpeg",
         "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
@@ -116,7 +125,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     }
 
     # Send a POST request to the endpoint with the parameters
-    response = requests.post(url, data=params)
+    response = requests.post(url, data=params, headers=headers)
     print('Received response results: ', response.json())
 
     task_id = None
