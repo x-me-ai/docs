@@ -22,7 +22,13 @@ https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking
 
 POST
 
-**Request Parameters**
+**Request Header Parameters**
+
+| **Parameter Name** | **Type** | **Required (or Mandatory)** | **value** |
+| --- | --- | --- | --- |
+| Authorization | string | Yes | VS6IOrZ3zhPTvPbQlHrzMJ |
+
+**Request Body Parameters**
 
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **Description** |
 | --- | --- | --- | --- |
@@ -102,53 +108,59 @@ GET
 
 Here's an example python code snippet showing how to call the TwinSync Lip Replacement API using the requests library:
     
-    import time
-    import requests
+import time
+import requests
 
-    # Set the endpoint URL
-    url = "https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking"
+# Set the endpoint URL
+url = "https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking"
 
-    # Set the request parameters
-    params = {
-        "audio_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683375896audio.wav",
-        "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
-        "key": "your_access_key"
-    }
+# Set the request parameters
+header = {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "Authorization": "VS6IOrZ3zhPTvPbQlHrzMJ"
+}
+data = {
+    "audio_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683375896audio.wav",
+    "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
+    "key": "your_access_key"
+}
 
-    # Send a POST request to the endpoint with the parameters
-    response = requests.post(url, data=params)
-    print('Received response results: ', response.json())
+# Send a POST request to the endpoint with the parameters
+response = requests.post(url, json=data, headers=header)
+print('Received response results: ', response.json())
 
-    task_id = None
+task_id = None
+# Check if the response was successful (status code 100)
+if response.json()['returnCode'] == 100:
+    # Get the task ID from the response
+    task_id = response.json()["task_id"]
+    print("Task ID:", task_id)
+else:
+    print("Error:", response.json()["msg"])
+
+if task_id:
+  # Wait for a few seconds or minutes before checking the status
+  result_url = None
+  while not result_url:
+
+    # Set the endpoint URL for getting the status
+    status_url = f"https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking?taskID={task_id}"
+
+    # Send a GET request to the status endpoint
+    status_response = requests.get(status_url)
+    print('Received processing results: ', status_response.json())
+
     # Check if the response was successful (status code 100)
-    if response.json()['result_code'] == 100:
-        # Get the task ID from the response
-        task_id = response.json()["task_id"]
-        print("Task ID:", task_id)
+    if status_response.json()['result_code'] == 100:
+        # Get the result URL and message from the response
+        result_url = status_response.json()["result_url"]
+        msg = status_response.json()["msg"]
+        print(msg)
+        print("Result URL:", result_url)
     else:
-        print("Error:", response.json()["msg"])
+        print("Status:", status_response.json()["msg"])
+        time.sleep(10)
 
-    if task_id:
-      # Wait for a few seconds or minutes before checking the status
-      result_url = None
-      while not result_url:
-
-        # Set the endpoint URL for getting the status
-        status_url = f"https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking?taskID={task_id}"
-
-        # Send a GET request to the status endpoint
-        status_response = requests.get(status_url)
-        print('Received processing results: ', status_response.json())
-
-        # Check if the response was successful (status code 100)
-        if status_response.json()['result_code'] == 100:
-            # Get the result URL and message from the response
-            result_url = status_response.json()["result_url"]
-            msg = status_response.json()["msg"]
-            print(msg)
-            print("Result URL:", result_url)
-        else:
-            print("Status:", status_response.json()["msg"])
-            time.sleep(10)
 
 
