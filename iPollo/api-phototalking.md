@@ -134,7 +134,7 @@ Here's an example python code snippet showing how to call the TwinSync Photo Tal
     
     task_id = None
     # Check if the response was successful (status code 100)
-    if response.json()['returnCode'] == 100:
+    if response.json()['result_code'] == 100:
         # Get the task ID from the response
         task_id = response.json()["task_id"]
         print("Task ID:", task_id)
