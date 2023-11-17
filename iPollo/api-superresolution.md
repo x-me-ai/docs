@@ -10,13 +10,13 @@ TwinSync also offers a variety of templates and customization options such as su
 
 # **API Documentation**
 
-This API is the documentation for Lip Replacement API. It uploads audio cloud address, video cloud address and access keys, and returns an API interface to generate a synthesized video.
+This API is the documentation for super resolution API. It uploads video cloud address and access keys, and returns an API interface to generate a synthesized video.
 
 ## **POST Service Request**
 
 **URL Address**
 
-https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking
+_
 
 **Request Method**
 
@@ -32,7 +32,6 @@ POST
 
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **Description** |
 | --- | --- | --- | --- |
-| audio\_url | string | Yes | Cloud address of audio file |
 | video\_url | string | Yes | Cloud address of video file |
 | key | string | Yes | String for validating client information |
 
@@ -61,7 +60,7 @@ POST
 
 **URL Address**
 
-https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking?taskID=***
+_
 
 **Request Method**
 
@@ -112,7 +111,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     import requests
     
     # Set the endpoint URL
-    url = "https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking"
+    url = "_"
     
     # Set the request parameters
     header = {
@@ -121,7 +120,6 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
         "Authorization": "VS6IOrZ3zhPTvPbQlHrzMJ"
     }
     data = {
-        "audio_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683375896audio.wav",
         "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
         "key": "your_access_key"
     }
@@ -145,7 +143,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
       while not result_url:
     
         # Set the endpoint URL for getting the status
-        status_url = f"https://pop.ipolloverse.cn:8090/iPollo/twinSync/videotalking?taskID={task_id}"
+        status_url = f"_?taskID={task_id}"
     
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
