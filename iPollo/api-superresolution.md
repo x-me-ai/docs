@@ -117,7 +117,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     header = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "VS6IOrZ3zhPTvPbQlHrzMJ"
+        "Authorization": "_"
     }
     data = {
         "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
