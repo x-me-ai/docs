@@ -26,7 +26,7 @@ POST
 
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **value** |
 | --- | --- | --- | --- |
-| Authorization | string | Yes | VS6IOrZ3zhPTvPbQlHrzMJ |
+| Authorization | string | Yes | _ |
 
 **Request Body Parameters**
 
