@@ -53,7 +53,7 @@ POST
 | --- | --- |
 | 200 | Request parameter error or incomplete |
 | 201 | Invalid or missing access key |
-| 202 | Invalid or missing cloud address of audio or video file |
+| 202 | Invalid or missing cloud address of video file |
 | 203 | Internal server error (such as video conversion failure, storage failure) |
 
 ## **GET Status**
