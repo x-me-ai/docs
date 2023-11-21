@@ -16,7 +16,7 @@ This API is the documentation for super resolution API. It uploads video cloud a
 
 **URL Address**
 
-_
+https://pop.ipolloverse.cn:8090/iPollo/twinSync/superresolution
 
 **Request Method**
 
@@ -26,7 +26,7 @@ POST
 
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **value** |
 | --- | --- | --- | --- |
-| Authorization | string | Yes | _ |
+| Authorization | string | Yes | 316138422425093120 |
 
 **Request Body Parameters**
 
@@ -61,7 +61,7 @@ POST
 
 **URL Address**
 
-_
+https://pop.ipolloverse.cn:8090/iPollo/twinSync/superresolution?taskID=***
 
 **Request Method**
 
@@ -112,16 +112,17 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
     import requests
     
     # Set the endpoint URL
-    url = "_"
+    url = "https://pop.ipolloverse.cn:8090/iPollo/twinSync/superresolution"
     
     # Set the request parameters
     header = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "_"
+        "Authorization": "316138422425093120"
     }
     data = {
         "video_url": "https://twinsync.oss-cn-hangzhou.aliyuncs.com/video/1683034663.mp4",
+        "upscale": 1,
         "key": "your_access_key"
     }
     
@@ -144,7 +145,7 @@ Here's an example python code snippet showing how to call the TwinSync Lip Repla
       while not result_url:
     
         # Set the endpoint URL for getting the status
-        status_url = f"_?taskID={task_id}"
+        status_url = f"https://pop.ipolloverse.cn:8090/iPollo/twinSync/superresolution?taskID={task_id}"
     
         # Send a GET request to the status endpoint
         status_response = requests.get(status_url)
