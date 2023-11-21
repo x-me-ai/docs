@@ -33,7 +33,7 @@ POST
 | **Parameter Name** | **Type** | **Required (or Mandatory)** | **Description** |
 | --- | --- | --- | --- |
 | video\_url | string | Yes | Cloud address of video file |
-| upcale | int | Yes | Zoom factor of the video. |
+| upcale | int | Yes | Zoom factor of the video |
 | key | string | Yes | String for validating client information |
 
 **Response Example**
