@@ -1,4 +1,4 @@
-# **About TwinSync**
+# **About X-Me**
 
 Use AI magic to make your existing videos speak any content in any language without training.
 
